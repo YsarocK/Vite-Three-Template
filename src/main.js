@@ -23,9 +23,9 @@ const sceneLoader = () => {
   for (const path in modules) {
     let module;
     if(modules[path].default.prototype.constructor) {
-      new modules[path].default({ scene: base })
+      new modules[path].default(base)
     } else if(typeof modules[path].default === 'function') {
-      modules[path].default({ scene: base })
+      modules[path].default(base)
     } else {
       return
     }
