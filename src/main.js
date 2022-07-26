@@ -17,7 +17,7 @@ for (const path in modules) {
 const scene = []
 const sceneLoader = () => {
   const base = new Base()
-  console.log(`init.js loaded`)
+  import.meta.env.MODE === 'development' && console.log(`init.js loaded`)
   
   const modules = import.meta.globEager(`./scripts/scene/*/*.js`, { import: 'default' })
   for (const path in modules) {
@@ -29,7 +29,7 @@ const sceneLoader = () => {
     } else {
       return
     }
-    console.log(`${path.split('/')[path.split('/').length - 1]} loaded`)
+    import.meta.env.MODE === 'development' && console.log(`${path.split('/')[path.split('/').length - 1]} loaded`)
     scene.push(module)
   }
 }
