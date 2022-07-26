@@ -5,6 +5,5 @@ export default class Lights {
   }
 
   init() {
-    console.log('lights initialized')
   }
 }

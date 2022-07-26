@@ -1,10 +1,4 @@
-export default class Cube {
-  constructor({ scene }) {
-    this.scene = scene
-    this.init()
-  }
+function Lights({ scene }) {
+}
 
-  init() {
-    this.cube = 'this is a cube'
-  }
-} 
+export default Lights
