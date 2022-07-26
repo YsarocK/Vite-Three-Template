@@ -2,13 +2,15 @@ import './styles/main.scss'
 import Base from './scripts/scene/init'
 
 // Automatically load JS files in modules
-const modules = import.meta.globEager(`./scripts/modules/*.js`)
-for (const path in modules) {
-  if(modules[path].default !== undefined) {
-    if(modules[path].default.prototype.constructor) {
-      new modules[path].default
-    } else if(typeof modules[path].default === 'function') {
-      modules[path].default()
+const modulesLoader = () => {
+  const modules = import.meta.globEager(`./scripts/modules/*.js`)
+  for (const path in modules) {
+    if(modules[path].default !== undefined) {
+      if(modules[path].default.prototype.constructor) {
+        new modules[path].default
+      } else if(typeof modules[path].default === 'function') {
+        modules[path].default()
+      }
     }
   }
 }
@@ -34,4 +36,5 @@ const sceneLoader = () => {
   }
 }
 
+modulesLoader()
 sceneLoader()
