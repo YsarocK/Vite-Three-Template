@@ -17,10 +17,19 @@ for (const path in modules) {
 const scene = []
 const sceneLoader = () => {
   const base = new Base()
+  console.log(`init.js loaded`)
   
   const modules = import.meta.globEager(`./scripts/scene/*/*.js`, { import: 'default' })
   for (const path in modules) {
-    const module = new modules[path].default({ scene: base })
+    let module;
+    if(modules[path].default.prototype.constructor) {
+      new modules[path].default({ scene: base })
+    } else if(typeof modules[path].default === 'function') {
+      modules[path].default({ scene: base })
+    } else {
+      return
+    }
+    console.log(`${path.split('/')[path.split('/').length - 1]} loaded`)
     scene.push(module)
   }
 }

@@ -7,8 +7,6 @@ export default class Base {
   }
 
   init(container) {
-    console.log('scene initialized')
-
     if(container) {
       this.container = document.querySelector(container)
     }
